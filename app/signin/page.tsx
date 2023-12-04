@@ -1,12 +1,20 @@
-'use client'
+'use client';
+
+import { useRouter } from 'next/navigation';
 
 export default function SignInPage() {
-  const handleClickGoogle = () => {}
+  const router = useRouter();
 
-  const handleClickEmail = () => {}
+  const handleClickGoogle = () => {};
+
+  const handleClickEmail = () => {};
+
+  const handleClickRegister = () => {
+    router.push('/signup');
+  };
 
   return (
-    <div className="max-w-xl mx-auto pt-10 pb-24">
+    <div>
       <div className="flex flex-col gap-6">
         <h1 className="text-lg font-semibold text-center">로그인</h1>
         <hr className="border-b-gray-300" />
@@ -23,16 +31,21 @@ export default function SignInPage() {
           onClick={handleClickEmail}
           className="relative border border-gray-700 rounded-md py-3 text-sm hover:bg-black/5 text-center font-semibold"
         >
-          이메일로 로그인하기
+          이메일로 시작하기
         </button>
         <button
           type="button"
           onClick={handleClickGoogle}
           className="relative border border-gray-700 rounded-md py-3 text-sm hover:bg-black/5 text-center font-semibold"
         >
-          구글로 로그인하기
+          구글로 시작하기
+        </button>
+      </div>
+      <div className="flex items-center justify-end mt-4">
+        <button className="text-gray-500 text-sm underline" onClick={handleClickRegister}>
+          회원가입
         </button>
       </div>
     </div>
-  )
+  );
 }
