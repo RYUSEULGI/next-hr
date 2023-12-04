@@ -2,6 +2,7 @@
 
 import AddressInput from '@/components/layouts/input/AddressInput';
 import { IUser } from '@/interface/user';
+import { APIUserRegister } from '@/lib/api/user/user';
 import { checkEmailPattern } from '@/utils/regex';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
@@ -18,20 +19,13 @@ export default function SignUpPage() {
   } = useForm<IUser>();
 
   const onSubmit: SubmitHandler<IUser> = async (data: IUser) => {
-    await fetch(`/api/auth/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(async (res) => {
-      console.log(res);
-      if (res.status === 200) {
-      } else {
-        const { error } = await res.json();
-        console.log(error);
-      }
-    });
+    const isSuccess = await APIUserRegister(data);
+
+    if (!isSuccess) {
+      return;
+    }
+
+    router.replace('/signin');
   };
 
   return (

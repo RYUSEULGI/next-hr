@@ -21,12 +21,12 @@ export const postApi = async (url: string, data?: any) => {
     });
 
     if (res.status === RESPONSE_CODE.OK) {
-      console.log(res);
       return res.body;
     } else {
       return null;
     }
   } catch (err) {
+    console.log('error', err);
     return errorCheck(err);
   }
 };

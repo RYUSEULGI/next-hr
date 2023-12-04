@@ -1,4 +1,4 @@
-import { prisma } from '@/db';
+import prisma from '@/db';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: '이미 가입된 아이디 입니다.' }, { status: 400 });
     }
 
-    const user = await prisma.user.create({
+    await prisma.user.create({
       data: requesetBody
     });
 
