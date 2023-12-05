@@ -1,5 +1,6 @@
 import Modal from '@/components/common/Modal';
-import { IUser } from '@/interface/user';
+import { IUser } from '@/lib/api/user/user.types';
+
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { useState } from 'react';

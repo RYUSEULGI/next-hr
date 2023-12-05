@@ -8,13 +8,13 @@ export enum RESPONSE_CODE {
 }
 
 export interface IResponse<T> {
-  code: number;
+  status: number;
   message: string;
   data: T;
 }
 
 export const responseSuccess = (res: IResponse<any>): boolean => {
-  if (res && res.code === RESPONSE_CODE.OK) {
+  if (res && res.status === RESPONSE_CODE.OK) {
     return true;
   }
 

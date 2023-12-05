@@ -1,8 +1,10 @@
 'use client';
 
-import AddressInput from '@/components/layouts/input/AddressInput';
-import { IUser } from '@/interface/user';
+import SubmitButton from '@/components/common/button/SubmitButton';
+import AddressInput from '@/components/common/input/AddressInput';
+
 import { APIUserRegister } from '@/lib/api/user/user';
+import { IUser } from '@/lib/api/user/user.types';
 import { checkEmailPattern } from '@/utils/regex';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
@@ -86,13 +88,12 @@ export default function SignUpPage() {
             >
               뒤로가기
             </button>
-            <button
+            <SubmitButton
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-500"
-            >
-              회원가입
-            </button>
+              loading={isSubmitting}
+              text="회원가입"
+            />
           </div>
         </form>
       </div>

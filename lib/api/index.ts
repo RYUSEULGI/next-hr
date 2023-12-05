@@ -1,15 +1,5 @@
 import { RESPONSE_CODE } from './response';
 
-const errorCheck = (err: any) => {
-  if (!err || !err.response) {
-    return null;
-  }
-  if (err.response.status && (err.response.status === 403 || err.response.status === 401)) {
-    return err.response.data;
-  }
-  return err.response.data;
-};
-
 export const postApi = async (url: string, data?: any) => {
   try {
     const res = await fetch(url, {
@@ -21,12 +11,11 @@ export const postApi = async (url: string, data?: any) => {
     });
 
     if (res.status === RESPONSE_CODE.OK) {
-      return res.body;
+      return await res.json();
     } else {
-      return null;
+      console.error('Error:', res.status, res.statusText);
     }
-  } catch (err) {
-    console.log('error', err);
-    return errorCheck(err);
+  } catch (error) {
+    console.error('Exception:', error);
   }
 };

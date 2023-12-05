@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     });
 
     if (exists) {
-      return NextResponse.json({ message: '이미 가입된 아이디 입니다.' }, { status: 400 });
+      return NextResponse.json({ data: '', message: '이미 가입된 아이디 입니다.', status: 400 });
     }
 
     await prisma.user.create({
