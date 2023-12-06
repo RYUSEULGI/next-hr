@@ -1,6 +1,7 @@
 'use client';
 
 import ToastProvider from '@/components/context/ToastContext';
+import Navbar from '@/components/layouts/Navbar';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import { ReactNode, useState } from 'react';
@@ -11,7 +12,10 @@ export default function Providers({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ToastProvider>
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider>
+          <Navbar />
+          {children}
+        </SessionProvider>
       </ToastProvider>
     </QueryClientProvider>
   );

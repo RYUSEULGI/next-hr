@@ -1,4 +1,3 @@
-import Navbar from '@/components/layouts/Navbar';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode, Suspense } from 'react';
@@ -18,7 +17,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={inter.className}>
         <Providers>
           <Suspense>
-            <Navbar />
             <main>{children}</main>
           </Suspense>
         </Providers>
