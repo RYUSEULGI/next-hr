@@ -1,5 +1,6 @@
 'use client';
 
+import ToastProvider from '@/components/context/ToastContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import { ReactNode, useState } from 'react';
@@ -9,7 +10,9 @@ export default function Providers({ children }: { children: ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SessionProvider>{children}</SessionProvider>
+      <ToastProvider>
+        <SessionProvider>{children}</SessionProvider>
+      </ToastProvider>
     </QueryClientProvider>
   );
 }
