@@ -10,7 +10,7 @@ export default function LoginTypeButtonList({ onNavigate }: Props) {
   const pathname = usePathname();
 
   const handleClickGoogle = () => {
-    signIn('google');
+    signIn('google', { callbackUrl: '/' });
   };
 
   const handleClickEmail = () => {

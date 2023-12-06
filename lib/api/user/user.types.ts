@@ -5,7 +5,7 @@ export enum LoginType {
 }
 
 export interface IUser {
-  username: string;
+  email: string;
   name: string;
   address: string;
 }

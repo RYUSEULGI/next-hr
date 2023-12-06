@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions = {
       id: Crediential.LOGIN,
       type: 'credentials',
       credentials: {
-        username: {}
+        email: {}
       },
       async authorize(credentials) {
         if (!credentials) {
@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
 
         const user = await prisma.user.findUnique({
           where: {
-            username: credentials.username
+            email: credentials.email
           }
         });
 
@@ -33,7 +33,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error('아이디를 확인해주세요');
         }
 
-        return { ...user, id: user.id.toString() };
+        return user;
       }
     }),
     GoogleProvider({
@@ -51,6 +51,21 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   callbacks: {
-    // TODO: jwt, session
+    session: async ({ session }) => {
+      const user = await prisma.user.findUnique({
+        where: { email: session.user?.email! },
+        select: { id: true, email: true, name: true }
+      });
+
+      session.user = user!;
+
+      return session;
+    },
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.sub = user.id;
+      }
+      return token;
+    }
   }
 };

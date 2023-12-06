@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   try {
     const exists = await prisma.user.findUnique({
       where: {
-        username: requesetBody.username
+        email: requesetBody.email
       }
     });
 
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       data: requesetBody
     });
 
-    return NextResponse.json({ data: '' }, { status: 200 });
+    return NextResponse.json({ data: '', status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ error: '서버에 오류가 발생하였습니다.', status: 500 });

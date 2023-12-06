@@ -2,6 +2,7 @@
 
 import SubmitButton from '@/components/common/button/SubmitButton';
 import AddressInput from '@/components/common/input/AddressInput';
+import { useToast } from '@/components/context/ToastContext';
 
 import { APIUserRegister } from '@/lib/api/user/user';
 import { IUser } from '@/lib/api/user/user.types';
@@ -12,6 +13,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 export default function SignUpPage() {
   const router = useRouter();
+  const toast = useToast();
+
   const {
     register,
     watch,
@@ -27,7 +30,8 @@ export default function SignUpPage() {
       return;
     }
 
-    router.replace('/signin');
+    toast.show(`${data.name}님 환영합니다~`);
+    router.replace('/login');
   };
 
   return (
@@ -41,7 +45,7 @@ export default function SignUpPage() {
           <div className="mb-10">
             <input
               placeholder="아이디"
-              {...register('username', {
+              {...register('email', {
                 required: '아이디를 입력해주세요',
                 pattern: {
                   value: checkEmailPattern,
@@ -51,13 +55,11 @@ export default function SignUpPage() {
               className={clsx(
                 'w-full rounded-lg border bg-white px-4 py-3 text-sm text-black placeholder:text-neutral-500 focus:none outline-none',
                 {
-                  'border-red-500': !!errors.username
+                  'border-red-500': !!errors.email
                 }
               )}
             />
-            {errors.username && (
-              <p className="mt-2 text-sm text-red-400">{errors.username.message}</p>
-            )}
+            {errors.email && <p className="mt-2 text-sm text-red-400">{errors.email.message}</p>}
           </div>
           <div className="mb-10">
             <input

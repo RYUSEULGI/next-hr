@@ -20,23 +20,22 @@ export default function LoginBox({ onNavigate }: Props) {
     handleSubmit,
     setError,
     formState: { errors }
-  } = useForm({ defaultValues: { username: '' } });
+  } = useForm({ defaultValues: { email: '' } });
 
-  const onSubmit: SubmitHandler<{ username: string }> = (data: { username: string }) => {
-    const username = data.username;
+  const onSubmit: SubmitHandler<{ email: string }> = (data: { email: string }) => {
+    const email = data.email;
 
     setLoading(true);
     signIn(Crediential.LOGIN, {
       redirect: false,
-      username
+      email
     }).then((res) => {
       setLoading(false);
 
       if (res && res.status === RESPONSE_CODE.OK) {
-        console.log(res);
         onNavigate('/');
       } else {
-        setError('username', { message: res?.error ?? SERVER_ERROR_MESSAGE });
+        setError('email', { message: res?.error ?? SERVER_ERROR_MESSAGE });
       }
     });
   };
@@ -46,7 +45,7 @@ export default function LoginBox({ onNavigate }: Props) {
       <div>
         <input
           placeholder="아이디"
-          {...register('username', {
+          {...register('email', {
             required: '아이디를 입력해주세요',
             pattern: {
               value: checkEmailPattern,
@@ -56,11 +55,11 @@ export default function LoginBox({ onNavigate }: Props) {
           className={clsx(
             'w-full rounded-lg border bg-white px-4 py-3 text-sm text-black placeholder:text-neutral-500 focus:none outline-none',
             {
-              'border-red-500': !!errors.username
+              'border-red-500': !!errors.email
             }
           )}
         />
-        {errors.username && <p className="mt-2 text-sm text-red-400">{errors.username.message}</p>}
+        {errors.email && <p className="mt-2 text-sm text-red-400">{errors.email.message}</p>}
       </div>
       <SubmitButton text="로그인" type="submit" loading={loading} disabled={loading} />
     </form>
