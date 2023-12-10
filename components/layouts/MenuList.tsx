@@ -10,11 +10,6 @@ export default function MenuList() {
           전체보기
         </Link>
       </li>
-      <li>
-        <Link href="/cv" className={className}>
-          이력서
-        </Link>
-      </li>
     </ul>
   );
 }

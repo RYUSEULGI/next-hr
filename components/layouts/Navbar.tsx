@@ -7,6 +7,7 @@ import MenuList from './MenuList';
 export default function Navbar() {
   const { data } = useSession();
 
+  console.log(data?.user);
   const handleLogout = () => {
     signOut();
   };
@@ -16,7 +17,7 @@ export default function Navbar() {
       <div className="flex">
         <Link href="/" className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6">
           <Logo />
-          <div className="ml-2 flex-none text-sm font-medium uppercase">Next-hr</div>
+          <div className="ml-2 flex-none text-sm font-medium uppercase">Next-ott</div>
         </Link>
         <MenuList />
       </div>

@@ -1,7 +1,7 @@
 import SubmitButton from '@/components/common/button/SubmitButton';
 import { SERVER_ERROR_MESSAGE } from '@/constants';
 import { RESPONSE_CODE } from '@/lib/api/response';
-import { Crediential } from '@/utils/authOptions';
+import { Credentials } from '@/utils/authOptions';
 import { checkEmailPattern } from '@/utils/regex';
 import clsx from 'clsx';
 import { signIn } from 'next-auth/react';
@@ -26,7 +26,7 @@ export default function LoginBox({ onNavigate }: Props) {
     const email = data.email;
 
     setLoading(true);
-    signIn(Crediential.LOGIN, {
+    signIn(Credentials.LOGIN, {
       redirect: false,
       email
     }).then((res) => {

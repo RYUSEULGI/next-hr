@@ -6,14 +6,14 @@ import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 
-export enum Crediential {
+export enum Credentials {
   LOGIN = 'login'
 }
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      id: Crediential.LOGIN,
+      id: Credentials.LOGIN,
       type: 'credentials',
       credentials: {
         email: {}
