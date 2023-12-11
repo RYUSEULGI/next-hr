@@ -41,6 +41,7 @@ export async function postApi(url: string, data?: any) {
   try {
     const res = await fetch(`${BASE_URL}/${url}`, {
       method: 'POST',
+      next: { revalidate: 0 },
       headers: {
         'Content-Type': 'application/json'
       },

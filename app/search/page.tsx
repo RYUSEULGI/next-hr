@@ -7,7 +7,9 @@ interface Props {
 }
 
 export default async function SearchPage({ searchParams }: Props) {
-  const { page: pageParam, category: categoryParam } = searchParams as { [key: string]: string };
+  const { page: pageParam, category: categoryParam } = searchParams as {
+    [key: string]: string | undefined;
+  };
 
   const page = Number(pageParam) || 1;
   const categoryId = Number(categoryParam) || 0;
