@@ -1,5 +1,4 @@
 import prisma from '@/db';
-import { convertBigIntResponse } from '@/lib/utils';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
@@ -16,12 +15,16 @@ export async function POST(req: Request) {
 
     const total = await prisma.content.count();
 
+    const convert = JSON.stringify(res, (_, value) =>
+      typeof value === 'bigint' ? Number(value) : value
+    );
+
     const data = {
       total,
       size,
       page,
       isLast: skip + size >= total,
-      items: convertBigIntResponse(res)
+      items: JSON.parse(convert)
     };
 
     return NextResponse.json({ data, status: 200 });
@@ -42,12 +45,16 @@ export async function POST(req: Request) {
     }
   });
 
+  const convert = JSON.stringify(res, (_, value) =>
+    typeof value === 'bigint' ? Number(value) : value
+  );
+
   const data = {
     total,
     size,
     page,
     isLast: skip + size >= total,
-    items: convertBigIntResponse(res)
+    items: JSON.parse(convert)
   };
 
   return NextResponse.json({ data, status: 200 });

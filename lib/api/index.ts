@@ -1,21 +1,7 @@
-import { IResponse, RESPONSE_CODE } from './response';
+import { RESPONSE_CODE } from './response';
 
 const BASE_URL =
-  process?.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXTAUTH_URL;
-
-// export const getApi = async <T>(url: string, params?: any): Promise<IResponse<T>> => {
-//   try {
-//     const res: AxiosResponse<IResponse<T>> = await API({
-//       url: urlParser(url),
-//       method: 'GET',
-//       params
-//     });
-
-//     return res.data;
-//   } catch (err) {
-//     return errorCheck(err);
-//   }
-// };
+  process?.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.BASE_URL;
 
 export async function getApi(url: string, data?: any) {
   try {
