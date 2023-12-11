@@ -11,8 +11,8 @@ export default function LineButton({ text, active = false, onClick }: Props) {
     <button
       type="button"
       onClick={onClick}
-      className={clsx('w-full rounded-lg border px-4 py-2.5 text-sm font-medium text-black', {
-        'border-blue-600 bg-blue-100': active
+      className={clsx('w-full rounded-2xl border px-4 py-2.5 text-sm font-medium text-black', {
+        'border-blue-600 bg-blue-50': active
       })}
     >
       {text}

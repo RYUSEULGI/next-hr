@@ -11,7 +11,7 @@ import useClickOutside from '@/hooks/useClickOutside';
 import { createUrl } from '@/utils/urls';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 
 export default function SearchInput() {
   const router = useRouter();

@@ -1,21 +1,25 @@
 import { SERVER_ERROR_MESSAGE } from '@/constants';
 
-import { getApi } from '..';
+import { postApi } from '..';
+import { IPaginationResponse } from '../common.types';
 import { responseSuccess } from '../response';
-import { IContentGetParameter } from './content.types';
+import { IContent, IContentGetParameter } from './content.types';
 
-export const APIGetContentList = async (params: IContentGetParameter): Promise<boolean> => {
+export const APIGetContentList = async (
+  params: IContentGetParameter
+): Promise<IPaginationResponse<IContent[]>> => {
   try {
-    const res = await getApi('/api/auth/signup', params);
+    const res = await postApi('/api/content/list', {
+      ...params,
+      size: 10
+    });
 
     if (responseSuccess(res)) {
-      return true;
+      return res.data;
     }
 
-    alert(res.message);
-    return false;
+    throw Error(res.message);
   } catch (error) {
-    alert(SERVER_ERROR_MESSAGE);
-    return false;
+    throw Error(SERVER_ERROR_MESSAGE);
   }
 };

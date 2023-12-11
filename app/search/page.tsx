@@ -1,27 +1,37 @@
+import Grid from '@/components/layouts/Grid';
+import CategoryButtonList from '@/components/pages/search/CategoryButtonList';
 import { APIGetContentList } from '@/lib/api/content/content';
-import { useInfiniteQuery } from '@tanstack/react-query';
 
-export default function SearchPage() {
-  //   const fetchList = ({ pageParam = 1 }) => {
-  //     return APIGetContentList({
-  //       curPage: pageParam,
-  //       itemPerPage: 12,
-  //       movieTypeCd: '전체'
-  //     });
-  //   };
+interface Props {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
-  //   const { data: user } = useInfiniteQuery({
-  //     queryKey: ['get-list'],
-  //     queryFn: ({ pageParam }) => fetchList(pageParam),
-  //     initialPageParam: 1,
-  //     getNextPageParam: (lastPage) => {
-  //       if (!lastPage) {
-  //         return 1;
-  //       }
-  //       return 1;
-  //       //   return lastPage.valueOf() + 1;
-  //     }
-  //   });
+export default async function SearchPage({ searchParams }: Props) {
+  const { page: pageParam, category: categoryParam } = searchParams as { [key: string]: string };
 
-  return <div></div>;
+  const page = Number(pageParam) || 1;
+  const categoryId = Number(categoryParam) || 0;
+
+  const contents = await APIGetContentList({ page, categoryId });
+
+  return (
+    <div className="w-full">
+      <div className="pt-4 pb-4">
+        <CategoryButtonList categoryId={categoryId} />
+      </div>
+
+      <section className="pt-10">
+        <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+          {contents.items.map((item) => (
+            <Grid.Item
+              key={`content-list-item-${item.id}-${item.name}`}
+              className="flex items-center justify-center border rounded-lg animate-fadeIn"
+            >
+              {item.name}
+            </Grid.Item>
+          ))}
+        </Grid>
+      </section>
+    </div>
+  );
 }

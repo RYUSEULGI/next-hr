@@ -13,7 +13,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="relative w-full flex items-center justify-between p-4 lg:px-6">
+    <nav className="relative w-full flex items-center justify-between pt-4 pb-4 pl-20 pr-20">
       <div className="flex">
         <Link href="/" className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6">
           <Logo />

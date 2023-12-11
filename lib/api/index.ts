@@ -1,8 +1,25 @@
-import { RESPONSE_CODE } from './response';
+import { IResponse, RESPONSE_CODE } from './response';
 
-export const getApi = async (url: string, data?: any) => {
+const BASE_URL =
+  process?.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.NEXTAUTH_URL;
+
+// export const getApi = async <T>(url: string, params?: any): Promise<IResponse<T>> => {
+//   try {
+//     const res: AxiosResponse<IResponse<T>> = await API({
+//       url: urlParser(url),
+//       method: 'GET',
+//       params
+//     });
+
+//     return res.data;
+//   } catch (err) {
+//     return errorCheck(err);
+//   }
+// };
+
+export async function getApi(url: string, data?: any) {
   try {
-    const res = await fetch(url, {
+    const res = await fetch(`${BASE_URL}/${url}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -18,11 +35,11 @@ export const getApi = async (url: string, data?: any) => {
   } catch (error) {
     console.error('Exception:', error);
   }
-};
+}
 
-export const postApi = async (url: string, data?: any) => {
+export async function postApi(url: string, data?: any) {
   try {
-    const res = await fetch(url, {
+    const res = await fetch(`${BASE_URL}/${url}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -38,4 +55,4 @@ export const postApi = async (url: string, data?: any) => {
   } catch (error) {
     console.error('Exception:', error);
   }
-};
+}

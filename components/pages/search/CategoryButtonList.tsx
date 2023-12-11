@@ -1,9 +1,23 @@
 import LineButton from '@/components/common/button/LineButton';
+import { APIGetContentCategory } from '@/lib/api/content/content.category';
+import Link from 'next/link';
 
-export default function CategoryButtonList() {
+interface Props {
+  categoryId: number;
+}
+
+export default async function CategoryButtonList({ categoryId }: Props) {
+  const categories = await APIGetContentCategory();
+
   return (
-    <div>
-      <LineButton text="" />
-    </div>
+    <ul className="w-full flex items-center gap-4">
+      {categories.map((category) => (
+        <li key={`category-list-filter-${category.id}`}>
+          <Link href={`/search?category=${category.id}`}>
+            <LineButton active={categoryId === category.id} text={category.name} />
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }

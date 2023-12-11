@@ -1,23 +1,13 @@
-export interface IContentGetParameter {
-  curPage: number;
-  itemPerPage: number;
-  movieTypeCd: string;
+import { IGetPagingParameter } from '../common.types';
+
+export interface IContentGetParameter extends IGetPagingParameter {
+  categoryId?: number;
 }
 
 export interface IContent {
-  movieCd: string;
-  movieNm: string;
-  movieNmEn: string;
-  prdtYear: string;
-  openDt: string;
-  typeNm: string;
-  prdtStatNm: string;
-  nationAlt: string;
-  genreAlt: string;
-  repNationNm: string;
-  repGenreNm: string;
-  directors: { peopleNm: string }[];
-  companys: IContentCompany[];
+  id: number;
+  name: string;
+  year: number;
 }
 
 export interface IContentCompany {
