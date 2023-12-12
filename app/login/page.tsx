@@ -11,6 +11,9 @@ export default function LoginPage() {
   const typeSearchParam = searchParams.get('type');
   const hasTypeParam = !!typeSearchParam;
 
+  console.log('BASE_URL', process.env.BASE_URL);
+  console.log('NEXT_PUBLIC_BASE_URL', process.env.NEXT_PUBLIC_BASE_URL);
+
   const handleNavigate = (route: string) => {
     router.push(route);
   };
