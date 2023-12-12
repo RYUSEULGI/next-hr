@@ -30,7 +30,7 @@ export default function SignUpPage() {
       return;
     }
 
-    toast.show(`${data.name}님 환영합니다~`);
+    toast.show(`${data.name}님 회원가입이 완료되었습니다.`);
     router.replace('/login');
   };
 

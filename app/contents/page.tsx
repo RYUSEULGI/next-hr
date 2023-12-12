@@ -1,6 +1,7 @@
 import Grid from '@/components/layouts/Grid';
-import CategoryButtonList from '@/components/pages/search/CategoryButtonList';
+import CategoryButtonList from '@/components/pages/contents/content-category-button-list';
 import { APIGetContentList } from '@/lib/api/content/content';
+import Link from 'next/link';
 
 interface Props {
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -29,7 +30,7 @@ export default async function SearchPage({ searchParams }: Props) {
               key={`content-list-item-${item.id}-${item.name}`}
               className="flex items-center justify-center border rounded-lg animate-fadeIn"
             >
-              {item.name}
+              <Link href={`/contents/${item.id}`}>{item.name}</Link>
             </Grid.Item>
           ))}
         </Grid>

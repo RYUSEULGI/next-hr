@@ -1,6 +1,6 @@
 'use client';
 
-import CurrentSearchList from '@/components/pages/search/CurrentSearhList';
+import CurrentSearchList from '@/components/pages/search/current-searh-list';
 import {
   deleteAllCurrentSearch,
   getCurrentSearchList,

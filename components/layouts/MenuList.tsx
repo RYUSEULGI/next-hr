@@ -6,7 +6,7 @@ export default function MenuList() {
   return (
     <ul className="hidden gap-6 text-sm md:flex md:items-center">
       <li>
-        <Link href="/search" className={className}>
+        <Link href="/contents" className={className}>
           전체보기
         </Link>
       </li>

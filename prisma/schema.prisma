@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated/client"
 }
 
 datasource db {
@@ -41,7 +42,9 @@ model User {
   image         String?
   provider      String?
   address       String?
+  planType      PlanType?
   accounts      Account[]
+  Plan          Plan[]
   sessions      Session[]
 }
 
@@ -53,7 +56,6 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model Content {
   id           BigInt        @id(map: "content_pkey") @default(autoincrement())
   name         String?       @default("") @db.VarChar
@@ -65,7 +67,6 @@ model Content {
   ContentGenre ContentGenre? @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model ContentGenre {
   id         BigInt    @id(map: "genre_pkey") @default(autoincrement())
   created_at DateTime  @default(now()) @db.Timestamptz(6)
@@ -73,7 +74,6 @@ model ContentGenre {
   Content    Content[]
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model ContentType {
   id         BigInt   @id @default(autoincrement())
   created_at DateTime @default(now()) @db.Timestamptz(6)
@@ -81,7 +81,22 @@ model ContentType {
   type       String?
 }
 
+model Plan {
+  id        BigInt    @id @default(autoincrement())
+  name      PlanType?
+  startDate DateTime  @default(now()) @db.Timestamptz(6)
+  endDate   String?
+  userId    String?
+  User      User?     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 enum ContentTypeEnum {
   RANK
   LIST
+}
+
+enum PlanType {
+  BASIC
+  STANDARD
+  PREMIUM
 }

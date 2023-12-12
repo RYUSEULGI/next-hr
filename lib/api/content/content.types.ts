@@ -14,3 +14,10 @@ export interface IContentCompany {
   companyCd: string;
   companyNm: string;
 }
+
+export interface IContentDetail extends IContent {
+  nation: string;
+  enName: string;
+  directors: string;
+  categoryId: number;
+}

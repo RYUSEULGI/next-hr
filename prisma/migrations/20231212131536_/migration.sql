@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "ContentTypeEnum" AS ENUM ('RANK', 'LIST');
+
 -- CreateTable
 CREATE TABLE "Account" (
     "id" TEXT NOT NULL,
@@ -46,6 +49,38 @@ CREATE TABLE "VerificationToken" (
     "expires" TIMESTAMP(3) NOT NULL
 );
 
+-- CreateTable
+CREATE TABLE "Content" (
+    "id" BIGSERIAL NOT NULL,
+    "name" VARCHAR DEFAULT '',
+    "enName" VARCHAR DEFAULT '',
+    "nation" TEXT DEFAULT '',
+    "directors" TEXT DEFAULT '',
+    "year" BIGINT,
+    "categoryId" BIGINT,
+
+    CONSTRAINT "content_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ContentGenre" (
+    "id" BIGSERIAL NOT NULL,
+    "created_at" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "name" TEXT DEFAULT '',
+
+    CONSTRAINT "genre_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ContentType" (
+    "id" BIGSERIAL NOT NULL,
+    "created_at" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "title" VARCHAR,
+    "type" TEXT,
+
+    CONSTRAINT "ContentType_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
 
@@ -66,3 +101,6 @@ ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Content" ADD CONSTRAINT "Content_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "ContentGenre"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;

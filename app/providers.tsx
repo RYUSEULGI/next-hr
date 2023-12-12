@@ -1,7 +1,8 @@
 'use client';
 
 import ToastProvider from '@/components/context/ToastContext';
-import Navbar from '@/components/layouts/Navbar';
+import Navbar from '@/components/layouts/navbar';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import { ReactNode, useState } from 'react';

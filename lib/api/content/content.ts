@@ -1,9 +1,9 @@
 import { SERVER_ERROR_MESSAGE } from '@/constants';
 
-import { postApi } from '..';
+import { getApi, postApi } from '..';
 import { IPaginationResponse } from '../common.types';
 import { responseSuccess } from '../response';
-import { IContent, IContentGetParameter } from './content.types';
+import { IContent, IContentDetail, IContentGetParameter } from './content.types';
 
 export const APIGetContentList = async (
   params: IContentGetParameter
@@ -13,6 +13,20 @@ export const APIGetContentList = async (
       ...params,
       size: 10
     });
+
+    if (responseSuccess(res)) {
+      return res.data;
+    }
+
+    throw Error(res.message);
+  } catch (error) {
+    throw Error(SERVER_ERROR_MESSAGE);
+  }
+};
+
+export const APIGetContent = async (id: number): Promise<IContentDetail> => {
+  try {
+    const res = await getApi(`/api/content?id=${id}`);
 
     if (responseSuccess(res)) {
       return res.data;
