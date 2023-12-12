@@ -7,7 +7,6 @@ import MenuList from './MenuList';
 export default function Navbar() {
   const { data } = useSession();
 
-  console.log(data?.user);
   const handleLogout = () => {
     signOut();
   };

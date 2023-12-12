@@ -1,5 +1,3 @@
-'use client';
-
 import SubmitButton from '@/components/common/button/SubmitButton';
 import { SERVER_ERROR_MESSAGE } from '@/constants';
 import { RESPONSE_CODE } from '@/lib/api/response';
@@ -7,14 +5,14 @@ import { Credentials } from '@/utils/authOptions';
 import { checkEmailPattern } from '@/utils/regex';
 import clsx from 'clsx';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-export default function LoginBox() {
-  const router = useRouter();
+interface Props {
+  onNavigate: (route: string) => void;
+}
 
+export default function LoginBox({ onNavigate }: Props) {
   const [loading, setLoading] = useState(false);
 
   const {
@@ -35,7 +33,7 @@ export default function LoginBox() {
       setLoading(false);
 
       if (res && res.status === RESPONSE_CODE.OK) {
-        router.push('/');
+        onNavigate('/');
       } else {
         setError('email', { message: res?.error ?? SERVER_ERROR_MESSAGE });
       }
