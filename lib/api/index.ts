@@ -1,11 +1,9 @@
 import { RESPONSE_CODE } from './response';
 
 const BASE_URL =
-  process?.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.BASE_URL;
-console.log('🚀 ~ file: index.ts:4 ~ BASE_URL:', BASE_URL);
-
-console.log('index BASE_URL', process.env.BASE_URL);
-console.log('index NEXT_PUBLIC_BASE_URL', process.env.NEXT_PUBLIC_BASE_URL);
+  process?.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function getApi(url: string, data?: any) {
   try {
