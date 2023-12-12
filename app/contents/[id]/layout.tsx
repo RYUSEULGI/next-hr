@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 export default function ContentDetailLayout({ children }: { children: React.ReactNode }) {
   return (
     <Suspense>
-      <div className="pt-4 min-h-screen w-full">{children}</div>
+      <div className="min-h-screen w-full">{children}</div>
     </Suspense>
   );
 }

@@ -13,7 +13,7 @@ export default async function CategoryButtonList({ categoryId }: Props) {
     <ul className="w-full flex items-center gap-4">
       {categories.map((category) => (
         <li key={`category-list-filter-${category.id}`}>
-          <Link href={`/search?category=${category.id}`}>
+          <Link href={`/contents?category=${category.id}`}>
             <LineButton active={categoryId === category.id} text={category.name} />
           </Link>
         </li>

@@ -1,11 +1,11 @@
 'use client';
 
-import CurrentSearchList from '@/components/pages/search/current-searh-list';
 import {
   deleteAllCurrentSearch,
   getCurrentSearchList,
   setCurrentSearch
 } from '@/components/pages/search/action';
+import CurrentSearchList from '@/components/pages/search/current-searh-list';
 import { CURRENT_SEARCH_KEY } from '@/constants';
 import useClickOutside from '@/hooks/useClickOutside';
 import { createUrl } from '@/utils/urls';
@@ -63,7 +63,7 @@ export default function SearchInput() {
     }
 
     searchSubmitHandler(search.value);
-    router.push(createUrl('/search', newParams));
+    router.push(createUrl('/contents', newParams));
 
     setShow(false);
   };

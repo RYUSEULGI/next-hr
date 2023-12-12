@@ -24,16 +24,22 @@ export default async function SearchPage({ searchParams }: Props) {
       </div>
 
       <section className="pt-10">
-        <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
-          {contents.items.map((item) => (
-            <Grid.Item
-              key={`content-list-item-${item.id}-${item.name}`}
-              className="flex items-center justify-center border rounded-lg animate-fadeIn"
-            >
-              <Link href={`/contents/${item.id}`}>{item.name}</Link>
-            </Grid.Item>
-          ))}
-        </Grid>
+        {contents.items.length > 0 ? (
+          <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+            {contents.items.map((item) => (
+              <Grid.Item
+                key={`content-list-item-${item.id}-${item.name}`}
+                className="flex items-center justify-center border rounded-lg animate-fadeIn"
+              >
+                <Link href={`/contents/${item.id}`}>{item.name}</Link>
+              </Grid.Item>
+            ))}
+          </Grid>
+        ) : (
+          <p className="flex items-center justify-center text-sm text-gray-500">
+            리스트가 없습니다.
+          </p>
+        )}
       </section>
     </div>
   );
