@@ -1,19 +1,16 @@
 'use client';
 
-import LoginBox from '@/components/pages/login/LoginBox';
-import LoginTypeButtonList from '@/components/pages/login/LoginTypeButtonList';
-import { useRouter, useSearchParams } from 'next/navigation';
+import LoginBox from '@/components/pages/login/login-box';
+import LoginTypeButtonList from '@/components/pages/login/login-type-button-list';
+import Link from 'next/link';
 
-export default function LoginPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+interface Props {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
-  const typeSearchParam = searchParams.get('type');
-  const hasTypeParam = !!typeSearchParam;
-
-  const handleNavigate = (route: string) => {
-    router.push(route);
-  };
+export default function LoginPage({ searchParams }: Props) {
+  const { type } = searchParams as { [key: string]: string | undefined };
+  const hasTypeParam = !!type;
 
   return (
     <div>
@@ -27,19 +24,12 @@ export default function LoginPage() {
       <div className="text-sm text-gray-500 mt-2">
         SNS 계정을 이용해서 로그인 또는 회원가입 해주세요.
       </div>
-      {hasTypeParam ? (
-        <LoginBox onNavigate={handleNavigate} />
-      ) : (
-        <LoginTypeButtonList onNavigate={handleNavigate} />
-      )}
-      <div className="flex items-center justify-end mt-4">
-        <button
-          className="text-gray-500 text-sm underline"
-          onClick={() => handleNavigate('/signup')}
-        >
+      {hasTypeParam ? <LoginBox /> : <LoginTypeButtonList />}
+      <Link href={'/signup'} className="flex items-center justify-end mt-4">
+        <button type="button" className="text-gray-500 text-sm underline">
           회원가입
         </button>
-      </div>
+      </Link>
     </div>
   );
 }
