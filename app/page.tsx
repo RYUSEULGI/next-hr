@@ -1,3 +1,5 @@
+'use client';
+
 import ContentListWithLabel from '@/components/layouts/content/list-with-label';
 import HomeMainBanner from '@/components/pages/home/home-main-banner';
 import { APIGetContentAll } from '@/lib/api/content/content';

@@ -9,7 +9,12 @@ interface Props {
   contents: IContent[];
 }
 
-export default function ContentListWithLabel({ type, label, carousel = false, contents }: Props) {
+export default function ContentListWithLabel({
+  type = ContentSortType.LIST,
+  label,
+  carousel = false,
+  contents
+}: Props) {
   return (
     <div>
       <h3 className="font-semibold text-2xl mb-6">{label}</h3>
