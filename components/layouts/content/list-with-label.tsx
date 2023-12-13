@@ -4,7 +4,7 @@ import Content from '.';
 
 interface Props {
   label: string;
-  type: ContentSortType;
+  type?: ContentSortType;
   carousel?: boolean;
   contents: IContent[];
 }
