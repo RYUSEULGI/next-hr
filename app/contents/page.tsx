@@ -1,4 +1,6 @@
 import Grid from '@/components/layouts/Grid';
+import CategoryButtonList from '@/components/pages/contents/content-category-button-list';
+
 import { APIGetContentList } from '@/lib/api/content/content';
 import Link from 'next/link';
 
@@ -13,13 +15,14 @@ export default async function SearchPage({ searchParams }: Props) {
 
   const page = Number(pageParam) || 1;
   const categoryId = Number(categoryParam) || 0;
-  console.log(categoryId);
-  const contents = await APIGetContentList({ page, categoryId });
 
+  // const contents = await APIGetContentList({ page, categoryId });
+  const contents = {items: []};
+  
   return (
     <div className="w-full">
       <div className="pt-4 pb-4">
-{/*         <CategoryButtonList categoryId={categoryId} /> */}
+        <CategoryButtonList categoryId={categoryId} />
       </div>
 
       <section className="pt-10">
