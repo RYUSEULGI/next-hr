@@ -1,9 +1,7 @@
 import { RESPONSE_CODE } from './response';
 
 const BASE_URL =
-  process?.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : process.env.NEXT_PUBLIC_BASE_URL;
+  process?.env.NODE_ENV === 'development' ? 'http://localhost:3000' : process.env.BASE_URL;
 
 export async function getApi(url: string, data?: any) {
   try {
@@ -29,7 +27,6 @@ export async function postApi(url: string, data?: any) {
   try {
     const res = await fetch(`${BASE_URL}/${url}`, {
       method: 'POST',
-      next: { revalidate: 0 },
       headers: {
         'Content-Type': 'application/json'
       },

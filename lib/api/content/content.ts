@@ -9,6 +9,10 @@ export const APIGetContentList = async (
   params: IContentGetParameter
 ): Promise<IPaginationResponse<IContent[]>> => {
   try {
+    if (!params.categoryId) {
+      delete params.categoryId;
+    }
+
     const res = await postApi('/api/content/list', {
       ...params,
       size: 10

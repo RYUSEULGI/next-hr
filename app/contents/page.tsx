@@ -16,9 +16,8 @@ export default async function SearchPage({ searchParams }: Props) {
   const page = Number(pageParam) || 1;
   const categoryId = Number(categoryParam) || 0;
 
-  // const contents = await APIGetContentList({ page, categoryId });
-  const contents = {items: []};
-  
+  const contents = await APIGetContentList({ page, categoryId });
+
   return (
     <div className="w-full">
       <div className="pt-4 pb-4">
@@ -26,7 +25,7 @@ export default async function SearchPage({ searchParams }: Props) {
       </div>
 
       <section className="pt-10">
-{/*         {contents.items.length > 0 ? (
+        {contents.items.length > 0 ? (
           <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
             {contents.items.map((item) => (
               <Grid.Item
@@ -41,7 +40,7 @@ export default async function SearchPage({ searchParams }: Props) {
           <p className="flex items-center justify-center text-sm text-gray-500">
             리스트가 없습니다.
           </p>
-        )} */}
+        )}
       </section>
     </div>
   );
