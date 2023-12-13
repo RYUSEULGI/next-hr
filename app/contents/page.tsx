@@ -26,7 +26,7 @@ export default async function SearchPage({ searchParams }: Props) {
       </div>
 
       <section className="pt-10">
-        {contents.items.length > 0 ? (
+{/*         {contents.items.length > 0 ? (
           <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
             {contents.items.map((item) => (
               <Grid.Item
@@ -41,7 +41,7 @@ export default async function SearchPage({ searchParams }: Props) {
           <p className="flex items-center justify-center text-sm text-gray-500">
             리스트가 없습니다.
           </p>
-        )}
+        )} */}
       </section>
     </div>
   );
