@@ -52,7 +52,14 @@ export default function Carousel({ bullet = false, items }: Props) {
   return (
     <ul ref={scrollRef} className="w-full border rounded-lg h-80">
       {items.map((item) => {
-        return <li key={`carousel-list-${item.id}`}></li>;
+        return (
+          <li
+            key={`carousel-list-${item.id}`}
+            className="w-full h-full flex items-center justify-center"
+          >
+            {item.image}
+          </li>
+        );
       })}
     </ul>
   );

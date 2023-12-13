@@ -1,5 +1,10 @@
 import { IGetPagingParameter } from '../common.types';
 
+export enum ContentSortType {
+  RANK = 'RANK',
+  LIST = 'LIST'
+}
+
 export interface IContentGetParameter extends IGetPagingParameter {
   categoryId?: number;
 }
@@ -7,7 +12,6 @@ export interface IContentGetParameter extends IGetPagingParameter {
 export interface IContent {
   id: number;
   name: string;
-  year: number;
 }
 
 export interface IContentCompany {
@@ -20,4 +24,11 @@ export interface IContentDetail extends IContent {
   enName: string;
   directors: string;
   categoryId: number;
+  year: number;
+}
+
+export interface IContentHome {
+  type: ContentSortType;
+  title: string;
+  items: IContent[];
 }

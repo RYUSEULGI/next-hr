@@ -4,7 +4,7 @@ export default function HomeMainBanner() {
   const testItems = [
     {
       id: 1,
-      image: '',
+      image: '배너 캐러셀 넣기',
       uri: ''
     },
     {
